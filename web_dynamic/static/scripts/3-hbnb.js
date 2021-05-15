@@ -30,7 +30,7 @@ $.get('http://0.0.0.0:5001/api/v1/status/', function (info, status) {
 $.ajax({
   type: 'POST',
   url: 'http://0.0.0.0:5001/api/v1/places_search/',
-  contenttype: 'application/json',
+  contentType: 'application/json',
   data: '{}',
   success: function (info) {
     for (let i = 0; i < info.length; i++) {

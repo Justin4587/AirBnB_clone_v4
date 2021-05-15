@@ -26,4 +26,30 @@ $.get('http://0.0.0.0:5001/api/v1/status/', function (info, status) {
   }
 });
 
-// placeholder for task 4: 3.js
+// task 4: 3.js
+$.ajax({
+  type: 'POST',
+  url: 'http://0.0.0.0:5001/api/v1/places_search/',
+  contenttype: 'application/json',
+  data: '{}',
+  success: function (info) {
+    for (let i = 0; i < info.length; i++) {
+      const place = info[i];
+      $('.places').append(
+        '<article><div class="title_box"><h2>' + place.name +
+            '</h2><div class="price_by_night">$' + place.price_by_night +
+            '</div></div><div class="information"><div class="max_guest">' +
+            rmAddS(place.max_guest, 'Guest') +
+            '</div><div class="number_rooms">' +
+            rmAddS(place.number_rooms, 'Bedroom') +
+            '</div><div class="number_bathrooms">' +
+            rmAddS(place.number_bathrooms, 'Bathroom') +
+            '</div></div><div class="description">' +
+            place.description + '</div></article>');
+    }
+  }
+});
+
+function rmAddS (num, name) {
+  if (num === 1) { return `${num} ${name}`; } else { return `${num} ${name}s`; }
+}
